@@ -5,10 +5,6 @@
 
 $(document).ready(function(){
 
-    console.log("conected");
-
-    let $duration = $("input[name=duration]").val();
-
     $("form").submit(function(){
           event.preventDefault();
         console.log("submitted");
@@ -23,14 +19,41 @@ $(document).ready(function(){
       console.log($duration, $location, $date);
 
      });
-    //  $("form").on('submit', function (){
-    //
-    //   // let $date= $("date").value;
-    //   let $date= $( "#datepicker" ).datepicker();
-    //   let $duration = $("duration").val();
-    //   let $location = $("location").val();
-    //   console.log($date, $duratiuon, $location);
-    // });
+
+
+  $.ajax({
+
+	// What kind of request
+	method: "GET",
+
+	// The URL for the request
+	url: "localhost:3000/events.json",
+
+	// The data to send aka query parameters
+	// data: $("form").serialize(),
+
+	// Code to run if the request succeeds;
+	// the response is passed to the function
+	success: onSuccess,
+
+	// Code to run if the request fails; the raw request and
+	// status codes are passed to the function
+	error: onError
+});
+
+function onSuccess(json) {
+	$("div").append("<h1>"+json.title+"</h1>");
+}
+
+function onError(xhr, status, errorThrown) {
+	alert("Sorry, there was a problem!");
+	console.log("Error: " + errorThrown);
+	console.log("Status: " + status);
+	console.dir(xhr);
+}
+
+
+
 
 
 
