@@ -30,13 +30,13 @@ $(document).ready(function() {
     json.forEach(function(el){
       console.log(el.title);
       let event = `
-        <div event-wrapper>
+        <div>
+          <h2><b>${el.title}</b></h2>
           <img src='${el.image_url}'/>
-          <hy2>${el.title}</h2>
-          <p>${el.location}</p>
-          <p>${el.category}</p>
-          <p>${el.duration}</p>
-          <p>${el.rating}</p>
+          <div><b> Category: ${el.category} </b></div>
+          <div><b> Location: ${el.location} </b></div>
+          <div><b> Duration: ${el.duration} hours </b></div>
+          <div><b> Rating :  ${el.rating}</b></div>
         </div>
       `;
       $("#event-Board").append(event);
@@ -49,4 +49,4 @@ $(document).ready(function() {
     console.log("Status: " + status);
     console.dir(xhr);
   }
-}); 
+});
